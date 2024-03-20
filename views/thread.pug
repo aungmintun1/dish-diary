@@ -1,0 +1,186 @@
+mixin Comment(object)
+ 
+ .box
+  .user-info
+   img(class="user-profile-picture" src=`/img/users/${object.profile.photo}` alt="user profile picture")
+   .text
+    p.username= object.profile.name
+    p.comment-box-text= object.text
+    
+  .comment-box
+  
+   .icon-box
+    button(data-commentId=object.id).like-comment
+     i.fa-regular.fa-thumbs-up.like-icon
+     span= (object.totalLikes || 0) < 1 ? 0 : object.totalLikes
+    .reply-icon
+     i.fa-regular.fa-message
+     span Reply
+   .textarea-box 
+    textarea.reply-input(name='comment' placeholder='Write your comment here...')
+    button.submit-reply(type='submit' data-threadId=thread.id data-commentId=object.id) Reply
+   
+   if object.replies
+    .reply
+     each reply in object.replies
+      +Comment(reply)
+      
+   else 
+    .replyList
+
+//-if a comment has a replies list, then we will put the reply object, each into the mixin, a reply list
+
+
+doctype html
+html
+  head
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      link(rel='stylesheet' href='/css/thread.css')
+      link(rel="stylesheet", href="/css/header.css")
+      link(rel="stylesheet", href="/css/footer.css")
+      link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet')
+
+      title Thread
+   
+  body
+   header.header
+    .header-content
+     img.header-icon(src="/img/websiteImg/header-icon3.png", alt="website icon")
+     h2 Dish Diary
+     nav
+      ul
+       - if (user)
+        li 
+         a(href="/") home
+        li
+         a(href="/shop") shop
+        li 
+         a.logout-li(href="/logout") logout
+
+        img.header-profile(src=`/img/users/${user.photo}` alt='user photo')
+        li
+         a(href="/account")= user.name
+       - else
+        li
+          a(href="/login") login
+     
+   div#thread.thread_container 
+    a(href="#modal")
+     .edit-menu 
+      if user && user.id === thread.userId
+       .circle 
+       .circle 
+       .circle 
+    .image-container
+     img(src=`/img/recipes/${thread.photo}` alt='recipe photo')
+     p.recipe-description= thread.description
+     if user
+      button(data-threadId=thread.id).favorite-btn
+       if saveCondition
+        img.save-icon(src="/img/websiteImg/favorited.png", alt="save icon")
+       else 
+        img.save-icon(src="/img/websiteImg/thread-favorite.png", alt="save icon")   
+    .recipe-content
+     h1.recipe-name= thread.question 
+     h2.ingredients-header Ingredients
+     .line
+     p.ingredients!= ingredients
+     h2.directions-header Directions
+     .line
+     .thread-directions
+      p!= directions
+    .thread_icon_container
+     button(data-threadId=thread.id).like-thread
+      i.fa-regular.fa-thumbs-up.like-icon
+      span likes: #{totalThreadLikes}
+     i.fa-regular.fa-message
+     span comments:#{totalComments}
+     
+    h3.thread-username By: #{thread.profile.name}
+    img.thread-profile-picture(src=`/img/users/${thread.profile.photo}`, alt="author picture")
+    
+
+   section.comment 
+    div.comment_container
+     h4.comment-counter= (totalComments || 0) < 1 ? 0 + ' comments'  : totalComments + ' comments'
+     .individual-comment
+      textarea#comment.individual-comment-input(name='comment' placeholder='Write your comment here...')
+      button.submit-button.submit-width(type='submit' data-threadId=thread.id) Comment
+    
+     each comment in comments 
+      if !comment.repliedTo
+       .comment-line
+       +Comment(comment)
+
+   footer 
+    .link-container
+     .social
+      h3 Dish Diary  
+      p Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.
+      .social-media-container 
+       i.fab.fa-facebook.fa-2x
+       i.fab.fa-twitter.fa-2x   
+       i.fab.fa-pinterest.fa-2x 
+       i.fab.fa-instagram.fa-2x 
+       i.fab.fa-youtube.fa-2x   
+     .more-from 
+      h3 More from Dish Diary 
+      a(href="#") Masthead
+      a(href="#") Newsletter Sign Up 
+      a(href="#") Dish Diary Media Kit
+      a(href="#") Find Us On The App
+      a(href="#") Stream
+     .contact-footer 
+      h3 Contact
+      a(href="#") Subscription FAQ's
+      a(href="#") Careers
+    .footer-links 
+     a(href="#") User Agreement
+     a(href="#") Privacy Policy
+     a(href="#") Privacy Rights
+     a(href="#") RSS Feeds
+     a(href="#") Accessibility Help
+     a(href="#") Cookies Settings
+    .footer-legal 
+     p © 2024 Dish Diary. All rights reserved. Dish Diary may earn a portion of sales from products that are purchased through our site as part of our Affiliate Partnerships with retailers. The material on this site may not be reproduced, distributed, transmitted, cached, or otherwise used, except with the prior written permission of Dish Diary. Ad Choices
+
+
+   .modal#modal
+     .modal-content
+      a(href="#thread").popout-button
+      a(href="#edit").edit-btn Edit Thread
+      button(data-threadId=thread.id).delete-btn Delete
+
+   .modal#edit
+     .modal-content
+      a(href="#thread").popout-button
+      label(for='question') Recipe name:
+      textarea#question.question-input(name='question' type='text' placeholder='Write your question here...')
+        | #{thread.question}
+      label(for='description') Description:
+      textarea#description.question-input(name='description' type='text' placeholder='Write your description here...') 
+        | #{thread.description}
+
+      label(for='ingredients') Ingredients:  
+      textarea#ingredients.description-input(name='ingredients' type='text' placeholder='Write your ingredients here...') 
+        | #{thread.ingredients}  
+        
+      label(for='directions') Directions:
+      textarea#directions.description-input(name='directions' type='text' placeholder='Write your directions here...') 
+        | #{thread.directions}
+      button(data-threadId=thread.id)#update.edit-btn Submit 
+      
+         
+   script(src='https://js.stripe.com/v3/')
+   script(src='/js/bundle.js')
+   script(src='/js/replyButton.js') 
+
+//-  we iterate through each comment in the threads.comments
+//- considering that there are only comment objects,to differentiate between a comment and a reply is, if it has a repliedTo field that is true
+//- if a comment doesn't have a repliedTo field, then it is a individual comment
+//- if a comment does have a repliedTo field, then it is a reply comment
+//- the if statment is to prevent reply comments being duplicated as indvidual comments
+

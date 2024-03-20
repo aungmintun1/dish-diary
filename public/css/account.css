@@ -1,0 +1,172 @@
+body{
+    margin:0;
+   
+}
+
+.account{
+    width:1200px;
+    height:40rem;
+    background-color: white;
+    margin:2rem auto;
+    border-radius: 20px;
+    display: flex;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.account-menu{
+    flex: 0 0 30%;
+    background: linear-gradient(to right, #172121, #2e4242);
+
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.account-settings{
+    flex: 0 0 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.setting-container{
+    width:65%;
+    margin-top:3rem;
+}
+
+
+ 
+.form__input {
+    display: block;
+    font-family: inherit;
+    font-size: 1rem;
+    color: inherit;
+    padding: 1rem;
+    border: none;
+    width: 100%;
+    background-color: #fff;
+    background-color: #f2f2f2;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /* Pseudo element (a visible thing that isn't really in the DOM).
+        Also needs -ms- */
+  }
+  .form__input:focus {
+    outline: none;
+    border-bottom: 3px solid #007bff;
+  }
+  .form__input:focus:invalid {
+    border-bottom: 3px solid #ff7730;
+  }
+  .form__input::-webkit-input-placeholder {
+    color: #bbb;
+  }
+  
+  .form__group:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  
+  .form__label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .picture-container{
+    display: flex;
+    align-items: center;
+    gap:2rem;
+  }
+  .profile-picture{
+    width:7rem;
+    height: 7rem;
+    border-radius: 50%;
+  }
+  .photo-upload {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+.photo-upload + label{
+    color: #007bff;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid #007bff;
+    padding: 3px;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.photo-upload + label:hover {
+    background-color: #0b5fba;
+    color: #fff;
+    -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+
+
+  .btn--green{
+    background-color: black;
+    color: white;
+    padding: .7rem 2rem;
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+
+  .btn--green:hover{
+    background-color: white;
+    color:black;
+  }
+
+  .button-container{
+    display: flex;
+    justify-content: end;
+  }
+
+
+  .menu-container{
+    margin-top:2rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+  }
+
+  .settings,.my-posts,.my-favorites{
+   
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color:white;
+    font-size: 1.5rem;
+    gap:1rem;
+    padding-left: 3rem;
+    transition: all 0.3s;
+  }
+  .favorite-icon{
+    border-radius: 50%;
+  }
+
+  .menu-icon{
+    width: 4rem;
+    height: 4rem;
+  }
+  .menu-link{
+    text-decoration: none;
+    color:white;
+  }
+
+  .settings:hover, .my-posts:hover, .my-favorites:hover {
+    border: solid white 2px;
+}
+

@@ -1,0 +1,295 @@
+*,
+ *::before, 
+*::after {
+  box-sizing: border-box;
+}
+
+*{
+margin: 0;
+padding: 0;
+line-height: calc(1em+0.5rem)
+}
+
+img{
+max-width: 100%;
+display:block;
+}
+body{
+    margin:0;
+    padding:0;
+}
+
+
+html{
+	scroll-behavior:smooth;
+}
+input, button, textarea, select{
+border: none;
+background: none;
+cursor: pointer;
+font-family: inherit;
+
+}
+
+ul{
+    padding:1rem;
+}
+
+.intro-content{
+    text-align: center;
+
+}
+.base-header{
+    font-family: Helvetica;
+    font-size:3rem;
+}
+.header-paragraph{
+    font-family: Helvetica;
+    font-size:1.2rem;
+    width:70ch;
+    margin:1rem auto;
+}
+.create-box{
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+    background-color: white;
+   
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:2rem;
+    width:300px;
+    height:250px;
+   
+    padding:1rem;
+}
+.create-box p{
+    font-size: 1.2rem;
+}
+
+
+.create-post-btn,.make-post{
+    width:90%;
+    padding:.5rem 1.5rem;
+    color:white;
+    background-color: #007bff;
+    font-size: 1.25rem;
+    border-radius: 50px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s;
+}
+.create-post-btn:hover{
+    background-color: #0b5fba;
+}
+.make-post:hover{
+    background-color: #0b5fba;
+}
+.comment-input{
+    width: 100%;
+    padding: 10px;
+    height: 3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+    background-color: white;
+    resize:none;
+}
+.input-text{
+    height: 8rem;
+}
+
+.threads{
+    width:1536px;
+    margin:3rem auto;
+    display: flex;
+    gap:2rem;
+    justify-content: center;
+    
+}
+.thread-link{
+    text-decoration: none;
+    color:black;
+}
+.thread-box{
+    width:1200px;
+    height: auto;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: center;
+    
+}
+.thread-box:hover .recipe-text, .thread-box:hover .question{
+text-decoration: underline;
+}
+
+.thread-likes{
+    background-color: #c7c7c8;
+    height: 100%;
+    width:3rem;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:.5rem;
+}
+.thread-likes i{
+   font-size: 1.5rem;
+}
+
+
+.thread-content{
+    margin-left:2rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    align-items: start;
+    width:100%;
+}
+.recipe-text{
+    font-family: helvetica;
+    font-weight: 700;
+}
+.recipe-description{
+    font-family: helvetica;
+    width:60ch;
+    line-height: 1.5;
+}
+
+.comment-number-container {
+    display: flex;
+    gap:.5rem;
+}
+.like-counter{
+    margin-right:2rem;
+}
+
+/* modal css */
+
+.modal{
+    width:100%;
+    height:100vh;
+    border:solid black 2px;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal:target{
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal:target .modal-content{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-content{
+    background-color: white;
+    padding:2rem;
+    border-radius: 16px;
+    width:600px;
+
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%) scale(.2);
+    transition: all .4s .2s;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:2rem;
+}
+
+.thread-form{
+    margin-top:2rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+}
+.thread-form button{
+    width:75%;
+}
+
+.photo-upload {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+.photo-upload + label{
+    color: #007bff;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid #007bff;
+    padding: 3px;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.photo-upload + label:hover {
+    background-color: #0b5fba;
+    color: #fff;
+    -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+
+/* pop out button css */
+.popout-button {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    background-color: transparent;
+
+    position: absolute;
+    top:2%;
+    right:1%;
+  }
+  
+  .popout-button::before,
+  .popout-button::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px; /* Thickness of the lines */
+    background-color: black;
+    transition: all 0.3s ease;
+  }
+  
+  .popout-button::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  
+  .popout-button::after {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  
+  .popout-button:hover::before,
+  .popout-button:hover::after {
+    background-color: red;
+  }

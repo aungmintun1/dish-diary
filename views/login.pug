@@ -1,0 +1,83 @@
+doctype html
+html
+  head
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      link(rel='stylesheet' href='/css/login.css')
+      link(rel='stylesheet' href='/css/header.css')
+      link(rel="stylesheet", href="/css/alert.css")
+      link(rel="stylesheet", href="/css/footer.css")
+      title login
+  
+  body(data-alert=`${alert ? alert : ''}`)
+   header.header
+    .header-content
+     img.header-icon(src="/img/websiteImg/header-icon3.png", alt="website icon")
+     h2 Dish Diary
+     nav
+      ul
+       - if (user)
+        li 
+         a.logout-li(href="/logout") logout
+
+        img.header-profile(src=`/img/users/${user.photo}` alt='user photo')
+        li
+         a(href="/account")= user.name
+       - else
+        li
+          a(href="/login") login
+        li
+          a(href="/") home
+        
+      
+   .login-form.margin-top
+    h1 Login
+    form.form
+     .form__group.ma-bt-md
+      label.form__label(for='email') test email: jack@gmail.com
+      input#email.form__input(type='email', placeholder='john@gmail.com', required)
+     .form__group
+      label.form__label(for='password') test password: tester123
+      input#password.form__input(type='password', placeholder='••••••••', required)
+     .form__group
+      button.btn.btn--green Sign In
+
+   footer 
+    .link-container
+     .social
+      h3 Dish Diary  
+      p Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.
+      .social-media-container 
+       i.fab.fa-facebook.fa-2x
+       i.fab.fa-twitter.fa-2x   
+       i.fab.fa-pinterest.fa-2x 
+       i.fab.fa-instagram.fa-2x 
+       i.fab.fa-youtube.fa-2x   
+     .more-from 
+      h3 More from Dish Diary 
+      a(href="#") Masthead
+      a(href="#") Newsletter Sign Up 
+      a(href="#") Dish Diary Media Kit
+      a(href="#") Find Us On The App
+      a(href="#") Stream
+     .contact-footer 
+      h3 Contact
+      a(href="#") Subscription FAQ's
+      a(href="#") Careers
+    .footer-links 
+     a(href="#") User Agreement
+     a(href="#") Privacy Policy
+     a(href="#") Privacy Rights
+     a(href="#") RSS Feeds
+     a(href="#") Accessibility Help
+     a(href="#") Cookies Settings
+    .footer-legal 
+     p © 2024 Dish Diary. All rights reserved. Dish Diary may earn a portion of sales from products that are purchased through our site as part of our Affiliate Partnerships with retailers. The material on this site may not be reproduced, distributed, transmitted, cached, or otherwise used, except with the prior written permission of Dish Diary. Ad Choices
+
+
+      script(src='https://js.stripe.com/v3/')
+      script(src='/js/bundle.js')
+     
+   

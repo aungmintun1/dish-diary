@@ -1,0 +1,119 @@
+doctype html
+html
+  head
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      link(rel='stylesheet' href='/css/header.css')
+      link(rel='stylesheet' href='/css/shop.css')
+      link(rel='stylesheet' href='/css/footer.css')
+
+      link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet')
+      title Dish Diary
+  
+  body
+   header.header
+    .header-content
+     img.header-icon(src="/img/websiteImg/header-icon3.png", alt="website icon")
+     h2 Dish Diary
+     nav
+      ul
+       - if (user)
+        li 
+         a.logout-li(href="/") home
+        li 
+         a.logout-li(href="/logout") logout
+        li 
+         a.cart-li(href="#cart")
+          i.fas.fa-shopping-cart
+
+        img.header-profile(src=`/img/users/${user.photo}` alt='user photo')
+        li
+         a(href="/account")= user.name
+       
+       - else
+        li
+          a(href="/login") login
+        
+    
+   section
+    img.shop-background(src="/img/websiteImg/shop-background.webp", alt="shop background picture")
+
+    .product-grid#shop
+     each product in products
+      a(href=`/product/${product.id}`).product-link
+       .product-box
+        img(src=`/img/products/${product.photo}`, alt="product image")
+        p.product-name= product.name
+        p.product-price $#{product.price}.00
+     
+    .modal#cart
+     a(href="#shop").popout-button
+     h3 Shopping Cart 
+     .line 
+     .item-section
+      each product in cart.items
+       .cart-item 
+        img(src=`/img/products/${product.item.photo}`, alt="cart item").item-picture
+        .item-content 
+         h3.cart-item-name= product.item.name
+         p.cart-item-price $#{product.item.price}.00
+         -if(product.size)
+          p.cart-item-size size: #{product.size}
+      
+         .button-container 
+          if product.quantity > 1
+           button(data-productId=product.item.id data-quantity=product.quantity).subtract-btn -
+          else 
+           button(data-productId=product.item.id).delete-item-btn 
+            i.fas.fa-trash-alt
+          p.quantity= product.quantity
+          button(data-productId=product.item.id data-quantity=product.quantity).add-btn +
+     
+     .subtotal   
+      h3 Subtotal 
+      p.subtotal-number $#{totalPrice}.00
+     button.checkout-btn Check Out
+
+   footer 
+    .link-container
+     .social
+      h3 Dish Diary  
+      p Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.
+      .social-media-container 
+       i.fab.fa-facebook.fa-2x
+       i.fab.fa-twitter.fa-2x   
+       i.fab.fa-pinterest.fa-2x 
+       i.fab.fa-instagram.fa-2x 
+       i.fab.fa-youtube.fa-2x   
+     .more-from 
+      h3 More from Dish Diary 
+      a(href="#") Masthead
+      a(href="#") Newsletter Sign Up 
+      a(href="#") Dish Diary Media Kit
+      a(href="#") Find Us On The App
+      a(href="#") Stream
+     .contact-footer 
+      h3 Contact
+      a(href="#") Subscription FAQ's
+      a(href="#") Careers
+    .footer-links 
+     a(href="#") User Agreement
+     a(href="#") Privacy Policy
+     a(href="#") Privacy Rights
+     a(href="#") RSS Feeds
+     a(href="#") Accessibility Help
+     a(href="#") Cookies Settings
+    .footer-legal 
+     p © 2024 Dish Diary. All rights reserved. Dish Diary may earn a portion of sales from products that are purchased through our site as part of our Affiliate Partnerships with retailers. The material on this site may not be reproduced, distributed, transmitted, cached, or otherwise used, except with the prior written permission of Dish Diary. Ad Choices
+
+
+    
+   script(src='https://js.stripe.com/v3/')
+   script(src='/js/bundle.js')
+   
+  
+
+
+     

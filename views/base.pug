@@ -1,0 +1,131 @@
+doctype html
+html
+  head
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      link(rel='stylesheet' href='/css/header.css')
+      link(rel='stylesheet' href='/css/base.css')
+      link(rel='stylesheet' href='/css/alert.css')
+      link(rel='stylesheet' href='/css/footer.css')
+      link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet')
+      title Thread
+  
+  body
+   header.header
+    .header-content
+     img.header-icon(src="/img/websiteImg/header-icon3.png", alt="website icon")
+     h2 Dish Diary
+     nav
+      ul
+       - if (user)
+        li
+         a(href="/shop") shop
+        li 
+         a.logout-li(href="/logout") logout
+
+        img.header-profile(src=`/img/users/${user.photo}` alt='user photo')
+        li
+         a(href="/account")= user.name
+        
+       - else
+        li
+          a(href="/login") login
+   
+   .intro-content
+    h1.base-header Recipes
+    p.header-paragraph Find the best recipes for breakfast, lunch, and dinner. That means eggs, chicken, pasta, and everything else you can imagine.
+
+   section#home.threads
+    .thread-container
+     each thread in threads 
+      a.thread-link(href=`/thread/${thread.id}`)
+       .thread-box
+        img(src=`/img/recipes/${thread.photo}`, alt="thread picture")
+        .thread-content  
+         p.recipe-text Recipes
+         h2.question= thread.question
+         p.recipe-description Dive into the rustic warmth of 'Humita en Olla,' a creamy corn-based delight hailing from the Andes. Our pot-simmered version marries the sweetness of corn with aromatic onions and a hint of spice.
+         p.thread-username Posted by: #{thread.profile.name}
+        
+         .comment-number-container 
+          i.fa-regular.fa-thumbs-up.like-icon
+          span.like-counter likes: #{thread.totalLikes}
+          i.fa-regular.fa-message
+          p #{thread.totalComments} comments
+    
+    .create-box
+     h2 Dish Diary Recipe blog
+     p Created at 2/24/24
+     p 9 users 
+     a(href="#modal").make-post make a recipe post
+
+   footer 
+    .link-container
+     .social
+      h3 Dish Diary  
+      p Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.
+      .social-media-container 
+       i.fab.fa-facebook.fa-2x
+       i.fab.fa-twitter.fa-2x   
+       i.fab.fa-pinterest.fa-2x 
+       i.fab.fa-instagram.fa-2x 
+       i.fab.fa-youtube.fa-2x   
+     .more-from 
+      h3 More from Dish Diary 
+      a(href="#") Masthead
+      a(href="#") Newsletter Sign Up 
+      a(href="#") Dish Diary Media Kit
+      a(href="#") Find Us On The App
+      a(href="#") Stream
+     .contact-footer 
+      h3 Contact
+      a(href="#") Subscription FAQ's
+      a(href="#") Careers
+    .footer-links 
+     a(href="#") User Agreement
+     a(href="#") Privacy Policy
+     a(href="#") Privacy Rights
+     a(href="#") RSS Feeds
+     a(href="#") Accessibility Help
+     a(href="#") Cookies Settings
+    .footer-legal 
+     p © 2024 Dish Diary. All rights reserved. Dish Diary may earn a portion of sales from products that are purchased through our site as part of our Affiliate Partnerships with retailers. The material on this site may not be reproduced, distributed, transmitted, cached, or otherwise used, except with the prior written permission of Dish Diary. Ad Choices
+
+
+    .modal#modal
+     .modal-content
+      a(href="#home").popout-button
+      form.thread-form
+       label(for='question') Recipe name:
+       textarea#question.comment-input(name='question' type='text' placeholder='Write your recipe name here...')
+
+       label(for='description') Description:
+       textarea#description.comment-input(name='description' type='text' placeholder='Write your description here...')
+
+       label(for='ingredients') Ingredients:
+       textarea#ingredients.comment-input.input-text(name='ingredients' type='text' placeholder='Write your ingredients here...')
+       
+       label(for='directions') Directions:
+       textarea#directions.comment-input.input-text(name='directions' type='text' placeholder='Write your directions here...')
+
+       input.photo-upload(type='file', accept='image/*', id='photo', name='photo')
+       label(for='photo') Choose recipe photo
+       button.create-post-btn(type='submit') create post
+  
+   script(src='https://js.stripe.com/v3/')
+   script(src='/js/bundle.js')
+  
+
+  
+
+//-    div.cart_container
+//-     each shirt in shirts   
+//-      div.box
+//-       p Shirt price: #{shirt.price}
+//-       p Shirt size: #{shirt.size}
+//-       button.add_btn(data-shirt-id=shirt.id , data-quantity=1) add to cart
+//-       div.dropdown
+//-        button#dropbtn.dropbtn Quantity: 1
+     

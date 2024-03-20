@@ -1,0 +1,96 @@
+doctype html
+html
+  head
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      link(rel='stylesheet' href='/css/account.css')
+      link(rel='stylesheet' href='/css/accountThreads.css')
+      link(rel="stylesheet", href="/css/header.css")
+      link(rel='stylesheet' href='/css/footer.css')
+      link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet')
+
+      title Thread
+   
+  body
+   header.header
+    .header-content
+     img.header-icon(src="/img/websiteImg/header-icon3.png", alt="website icon")
+     h2 Dish Diary
+     nav
+      ul
+       - if (user)
+        li 
+         a(href="/") home
+        li
+         a(href="/shop") shop
+        
+        li 
+         a.logout-li(href="/logout") logout
+
+        img.header-profile(src=`/img/users/${user.photo}` alt='user photo')
+        li
+         a(href="/account")= user.name
+       - else
+        li
+          a(href="/login") login
+        
+     
+   section.account 
+    .account-menu 
+     .menu-container 
+      .settings 
+       img.menu-icon(src="/img/websiteImg/white-settings-icon.png", alt="post icon")
+       a.menu-link(href='/account') Settings
+      .my-posts 
+       img.menu-icon(src="/img/websiteImg/header-icon.png", alt="post icon")
+       a.menu-link(href='/accountThreads') My Posts
+      .my-favorites 
+       img.menu-icon.favorite-icon(src="/img/websiteImg/favorite-icon.webp", alt="post icon")
+       a.menu-link(href='/accountFavorites') My Favorite Recipes 
+
+    .account-post-section
+     h2 My Favorite Recipes
+     .posts-container 
+      each thread in threads 
+       .post-box
+        img(src=`/img/recipes/${thread.photo}`, alt="thread photo")
+        p= thread.question
+      
+   footer 
+    .link-container
+     .social
+      h3 Dish Diary  
+      p Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.
+      .social-media-container 
+       i.fab.fa-facebook.fa-2x
+       i.fab.fa-twitter.fa-2x   
+       i.fab.fa-pinterest.fa-2x 
+       i.fab.fa-instagram.fa-2x 
+       i.fab.fa-youtube.fa-2x   
+     .more-from 
+      h3 More from Dish Diary 
+      a(href="#") Masthead
+      a(href="#") Newsletter Sign Up 
+      a(href="#") Dish Diary Media Kit
+      a(href="#") Find Us On The App
+      a(href="#") Stream
+     .contact-footer 
+      h3 Contact
+      a(href="#") Subscription FAQ's
+      a(href="#") Careers
+    .footer-links 
+     a(href="#") User Agreement
+     a(href="#") Privacy Policy
+     a(href="#") Privacy Rights
+     a(href="#") RSS Feeds
+     a(href="#") Accessibility Help
+     a(href="#") Cookies Settings
+    .footer-legal 
+     p © 2024 Dish Diary. All rights reserved. Dish Diary may earn a portion of sales from products that are purchased through our site as part of our Affiliate Partnerships with retailers. The material on this site may not be reproduced, distributed, transmitted, cached, or otherwise used, except with the prior written permission of Dish Diary. Ad Choices
+    
+   script(src='https://js.stripe.com/v3/')  
+   script(src='/js/bundle.js')
+  
+
