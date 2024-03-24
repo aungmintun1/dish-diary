@@ -4,6 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+const compression = require('compression');
 
 const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController');
@@ -34,6 +35,7 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(cookieParser());
 app.use(helmet());
+app.use(compression());
 
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "script-src 'self' https://cdnjs.cloudflare.com https://js.stripe.com");

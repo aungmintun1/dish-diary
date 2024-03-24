@@ -314,21 +314,25 @@
 
   .submit-button,.submit-reply {
     padding: 6px 20px;
-    background-color: #007bff;
+    background-color:black;
     color: white;
     border: none;
     margin-left:1rem;
     border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     margin-bottom: 10px;
   }
   .submit-button:hover {
-    background-color: #0056b3;
+    background-color:white;
+    color:black;
+    border: solid black 2px;
   }
 
   .submit-reply:hover {
-    background-color: #0056b3;
+    background-color:white;
+    color:black;
+    border: solid black 2px;
   }
 
 
@@ -417,7 +421,7 @@
 
 .edit-btn{
   padding:1rem;
-  background-color: #007bff;
+  background-color: black;
   border-radius: 20px;
   color: white;
   font-size: 1.2rem;
@@ -429,15 +433,22 @@
 
 .delete-btn{
   padding:1rem 2rem;
-  background-color: red;
+  background-color: black;
   border-radius: 20px;
   color: white;
   font-size: 1.2rem;
   transition: all 0.3s;
 }
 
-.edit-btn:hover, .delete-btn:hover{
-  background-color: black;
+.edit-btn:hover{
+  border:solid black 2px;
+  background-color: white;
+  color:black
+}
+.delete-btn:hover{
+  border:solid red 2px;
+  background-color: white;
+  color:black;
 }
 
 .question-input{

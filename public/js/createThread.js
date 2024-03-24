@@ -5,7 +5,7 @@ export const createThread = async (form) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:8000/threads/createThread',
+      url: '/threads/createThread',
       data: form, // Send form directly without wrapping it
     });
 

@@ -5,7 +5,7 @@ export const updateMe = async (form) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: 'http://localhost:8000/users/updateMe',
+      url: '/users/updateMe',
       data: form,
     });
 

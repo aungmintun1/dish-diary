@@ -62,7 +62,7 @@ exports.createThread =  catchAsync(async (req,res,next) => {
     if(!req.body.profile) req.body.profile = req.user.id;
 
     if(req.file) req.body.photo = req.file.originalname;
-    console.log('req.file is ', req.file);
+    
    
     const newThread = await Thread.create(req.body);
 

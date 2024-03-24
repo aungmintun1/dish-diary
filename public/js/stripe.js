@@ -6,7 +6,7 @@ export const bookItem = async () => {
   try {
     // 1) Get checkout session from API
     const session = await axios(
-      `http://localhost:8000/bookings/checkout-session`
+      `/bookings/checkout-session`
     );
    
     // 2) Create checkout form + chanre credit card

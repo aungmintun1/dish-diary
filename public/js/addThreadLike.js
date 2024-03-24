@@ -4,7 +4,7 @@ export const addThreadLike = async (threadId) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: `http://localhost:8000/threads/${threadId}/likes/addLike`,
+      url: `/threads/${threadId}/likes/addLike`,
       data: {
        
       }

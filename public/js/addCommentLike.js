@@ -4,7 +4,7 @@ export const addCommentLike = async (commentId) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: `http://localhost:8000/comments/${commentId}/commentLikes/addCommentLike`,
+      url: `/comments/${commentId}/commentLikes/addCommentLike`,
       data: {
        
       }

@@ -5,7 +5,7 @@ export const updateThread = async (id, question,ingredients, description,directi
   try {
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:8000/threads/updateThread/${id}`,
+      url: `/threads/updateThread/${id}`,
       data:{
         question,
         description,

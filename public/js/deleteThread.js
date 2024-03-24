@@ -5,7 +5,7 @@ export const deleteThread = async (id) => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `http://localhost:8000/threads/deleteThread/${id}`,
+      url: `/threads/deleteThread/${id}`,
       data: null
     });
 

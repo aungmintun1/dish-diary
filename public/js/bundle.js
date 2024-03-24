@@ -12000,7 +12000,7 @@ var login = exports.login = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: 'http://localhost:8000/users/login',
+            url: '/users/login',
             data: {
               email: email,
               password: password
@@ -12053,7 +12053,7 @@ var createThread = exports.createThread = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: 'http://localhost:8000/threads/createThread',
+            url: '/threads/createThread',
             data: form // Send form directly without wrapping it
           });
         case 3:
@@ -12102,7 +12102,7 @@ var createComment = exports.createComment = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: "http://localhost:8000/threads/".concat(threadId, "/comments/createComment"),
+            url: "/threads/".concat(threadId, "/comments/createComment"),
             data: {
               text: text
             }
@@ -12151,7 +12151,7 @@ var createReply = exports.createReply = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: "http://localhost:8000/threads/".concat(threadId, "/comments/reply/").concat(commentId),
+            url: "/threads/".concat(threadId, "/comments/reply/").concat(commentId),
             data: {
               text: text
             }
@@ -12200,7 +12200,7 @@ var addThreadLike = exports.addThreadLike = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: "http://localhost:8000/threads/".concat(threadId, "/likes/addLike"),
+            url: "/threads/".concat(threadId, "/likes/addLike"),
             data: {}
           });
         case 3:
@@ -12247,7 +12247,7 @@ var addCommentLike = exports.addCommentLike = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: "http://localhost:8000/comments/".concat(commentId, "/commentLikes/addCommentLike"),
+            url: "/comments/".concat(commentId, "/commentLikes/addCommentLike"),
             data: {}
           });
         case 3:
@@ -12294,7 +12294,7 @@ var deleteThread = exports.deleteThread = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'DELETE',
-            url: "http://localhost:8000/threads/deleteThread/".concat(id),
+            url: "/threads/deleteThread/".concat(id),
             data: null
           });
         case 3:
@@ -12343,7 +12343,7 @@ var updateThread = exports.updateThread = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'PATCH',
-            url: "http://localhost:8000/threads/updateThread/".concat(id),
+            url: "/threads/updateThread/".concat(id),
             data: {
               question: question,
               description: description,
@@ -12397,7 +12397,7 @@ var updateMe = exports.updateMe = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'PATCH',
-            url: 'http://localhost:8000/users/updateMe',
+            url: '/users/updateMe',
             data: form
           });
         case 3:
@@ -12446,7 +12446,7 @@ var favorite = exports.favorite = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'PATCH',
-            url: "http://localhost:8000/users/addFavorites/".concat(threadId),
+            url: "/users/addFavorites/".concat(threadId),
             data: {}
           });
         case 3:
@@ -12493,7 +12493,7 @@ var editCart = exports.editCart = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'PATCH',
-            url: "http://localhost:8000/carts/edit/".concat(id),
+            url: "/carts/edit/".concat(id),
             data: {
               quantity: quantity
             }
@@ -12541,7 +12541,7 @@ var bookItem = exports.bookItem = /*#__PURE__*/function () {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return (0, _axios.default)("http://localhost:8000/bookings/checkout-session");
+          return (0, _axios.default)("/bookings/checkout-session");
         case 3:
           session = _context.sent;
           _context.next = 6;
@@ -12588,7 +12588,7 @@ var deleteCart = exports.deleteCart = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'DELETE',
-            url: "http://localhost:8000/carts/deleteItem/".concat(id)
+            url: "/carts/deleteItem/".concat(id)
           });
         case 3:
           res = _context.sent;
@@ -12634,7 +12634,7 @@ var addCart = exports.addCart = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'PATCH',
-            url: "http://localhost:8000/carts/addToCart/".concat(id),
+            url: "/carts/addToCart/".concat(id),
             data: {
               quantity: quantity,
               size: size
@@ -12894,7 +12894,6 @@ if (updateThreadBtn) updateThreadBtn.addEventListener('click', function (e) {
 });
 if (userForm) userForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  console.log('user form clicked');
   var form = new FormData();
   form.append('name', document.getElementById('name').value);
   form.append('email', document.getElementById('email').value);
@@ -12953,50 +12952,6 @@ if (quantityBtn) {
   });
 }
 ;
-
-/*
-if(addToCartBtn){
-addToCartBtn.addEventListener('click', e => {
-    e.preventDefault();   
-    
-    let quantityCounter = document.querySelector('.atc-quantity');
-    let currentQuantity = parseInt(quantityCounter.textContent);
-      const productId = addToCartBtn.getAttribute('data-productId');
-      addCart(productId,currentQuantity)
-    
- });
-}
-   if(sizeBtnContainer){
-    const sizeBtns= document.querySelectorAll('.size-btn')
-  sizeBtns.forEach(button => {
-   let size = 'small';
-   sizeBtns[0].style.backgroundColor = 'rgb(240, 189, 95)';
-     button.addEventListener('click', e => {
-    
-     size = button.getAttribute('data-size');
-     console.log('selection is ' + size)
-       if(size === "small"){
-       sizeBtns[0].style.backgroundColor = 'rgb(240, 189, 95)';
-       sizeBtns[1].style.backgroundColor = '#EFEFEF';
-       sizeBtns[2].style.backgroundColor = '#EFEFEF';
-     }
-     if(size === "medium"){
-       sizeBtns[0].style.backgroundColor = '#EFEFEF';
-       sizeBtns[1].style.backgroundColor = 'rgb(240, 189, 95)';
-       sizeBtns[2].style.backgroundColor = '#EFEFEF';
-     }
-     if(size === "large"){
-       sizeBtns[0].style.backgroundColor = '#EFEFEF';
-       sizeBtns[1].style.backgroundColor = '#EFEFEF';
-       sizeBtns[2].style.backgroundColor = 'rgb(240, 189, 95)';
-     }
-   })
-    })
- }
-*/
-
-//test code 
-
 if (addToCartBtn) {
   var size = 'small';
   if (sizeBtnContainer) {
@@ -13005,7 +12960,6 @@ if (addToCartBtn) {
       sizeBtns[0].style.backgroundColor = 'rgb(240, 189, 95)';
       button.addEventListener('click', function (e) {
         size = button.getAttribute('data-size');
-        console.log('selection is ' + size);
         if (size === "small") {
           sizeBtns[0].style.backgroundColor = 'rgb(240, 189, 95)';
           sizeBtns[1].style.backgroundColor = '#EFEFEF';
@@ -13031,7 +12985,6 @@ if (addToCartBtn) {
     var productId = addToCartBtn.getAttribute('data-productId');
     if (!sizeBtnContainer) {
       size = false;
-      console.log('there is no size');
     }
     (0, _addCart.addCart)(productId, currentQuantity, size);
   });
@@ -13061,7 +13014,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53208" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56726" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

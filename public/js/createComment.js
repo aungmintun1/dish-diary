@@ -4,7 +4,7 @@ export const createComment = async (text,threadId) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: `http://localhost:8000/threads/${threadId}/comments/createComment`,
+      url: `/threads/${threadId}/comments/createComment`,
       data: {
        text
       }

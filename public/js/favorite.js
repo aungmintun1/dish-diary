@@ -4,7 +4,7 @@ export const favorite = async (threadId) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:8000/users/addFavorites/${threadId}`,
+      url: `/users/addFavorites/${threadId}`,
       data: {
        
       }

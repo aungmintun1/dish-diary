@@ -6,7 +6,7 @@ export const addCart = async (id, quantity,size) => {
 
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:8000/carts/addToCart/${id}`,
+      url: `/carts/addToCart/${id}`,
       data:{
         quantity,
         size

@@ -135,8 +135,6 @@ document.querySelector('.form').addEventListener('submit', e => {
        if(userForm)
        userForm.addEventListener('submit', e => {
            e.preventDefault();
-
-           console.log('user form clicked')
      
            const form = new FormData();
            form.append('name', document.getElementById('name').value);
@@ -225,55 +223,6 @@ document.querySelector('.form').addEventListener('submit', e => {
             })
          };
 
-         /*
-         if(addToCartBtn){
-         addToCartBtn.addEventListener('click', e => {
-             e.preventDefault();   
-             
-             let quantityCounter = document.querySelector('.atc-quantity');
-             let currentQuantity = parseInt(quantityCounter.textContent);
-
-             const productId = addToCartBtn.getAttribute('data-productId');
-
-             addCart(productId,currentQuantity)
-             
-          });
-        }
-
-          if(sizeBtnContainer){
-
-           const sizeBtns= document.querySelectorAll('.size-btn')
-           sizeBtns.forEach(button => {
-            let size = 'small';
-            sizeBtns[0].style.backgroundColor = 'rgb(240, 189, 95)';
-
-            button.addEventListener('click', e => {
-             
-              size = button.getAttribute('data-size');
-              console.log('selection is ' + size)
-
-              if(size === "small"){
-                sizeBtns[0].style.backgroundColor = 'rgb(240, 189, 95)';
-                sizeBtns[1].style.backgroundColor = '#EFEFEF';
-                sizeBtns[2].style.backgroundColor = '#EFEFEF';
-              }
-              if(size === "medium"){
-                sizeBtns[0].style.backgroundColor = '#EFEFEF';
-                sizeBtns[1].style.backgroundColor = 'rgb(240, 189, 95)';
-                sizeBtns[2].style.backgroundColor = '#EFEFEF';
-              }
-              if(size === "large"){
-                sizeBtns[0].style.backgroundColor = '#EFEFEF';
-                sizeBtns[1].style.backgroundColor = '#EFEFEF';
-                sizeBtns[2].style.backgroundColor = 'rgb(240, 189, 95)';
-              }
-            })
-
-           })
-          }
-        */
-
-  //test code 
 
   if(addToCartBtn){
     let size = 'small';
@@ -287,7 +236,7 @@ document.querySelector('.form').addEventListener('submit', e => {
        button.addEventListener('click', e => {
         
          size = button.getAttribute('data-size');
-         console.log('selection is ' + size)
+         
 
          if(size === "small"){
            sizeBtns[0].style.backgroundColor = 'rgb(240, 189, 95)';
@@ -319,7 +268,6 @@ document.querySelector('.form').addEventListener('submit', e => {
 
         if(!sizeBtnContainer){
           size = false;
-          console.log('there is no size')
         }
         
         addCart(productId,currentQuantity,size)
